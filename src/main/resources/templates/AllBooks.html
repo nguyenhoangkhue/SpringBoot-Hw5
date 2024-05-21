@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="textInput" placeholder="Nhập tiêu đề sách...">
+<button class="api" onclick="getText()">
+    <a th:href="@{/books/search?keyword={keyword} (keyword=)}">Tìm kiếm</a>
+</button>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>title</th>
+        <th>author</th>
+        <th>year</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book:${books}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.year}"></td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    function getText() {
+        var text = document.getElementById("textInput").value;
+        let api=document.querySelector('.api')
+        api.innerHTML=`${<a> th:href="@{/books/search?keyword={keyword} (keyword=text)}">Tìm kiếm</a>}`
+    }
+</script>
+</body>
+</html>
